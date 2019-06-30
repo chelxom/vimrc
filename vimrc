@@ -46,6 +46,7 @@ inoremap <C-S> <ESC>:w<CR>a
 nnoremap <C-S> :w<CR>
 
 inoremap <C-C> "+y
+vnoremap <c-c> "+y
 inoremap <C-V> <ESC>"+pa
 inoremap <C-Z> <ESC>:u<CR>a
 nnoremap <C-Z> :u<CR>
