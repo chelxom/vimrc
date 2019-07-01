@@ -2,7 +2,9 @@ set rtp+=~/.vim/bundle/Vundle.vim/
 call vundle#begin()
 Plugin 'VundleVim/Vundle.vim'
 
-Plugin 'bling/vim-airline' 
+"Plugin 'bling/vim-airline' 
+Plugin 'itchyny/lightline.vim'
+Plugin 'mengelbrecht/lightline-bufferline'
 Plugin 'crusoexia/vim-monokai'
 Plugin 'altercation/vim-colors-solarized'
 
@@ -56,4 +58,13 @@ inoremap jj <ESC>
 " Solaized
 let g:solarized_menu=0
 
+let g:airline_extensions = []
 let g:airline_highlighting_cache = 0
+let g:airline_powerline_fonts = 0
+let g:airline#extensions#tabline#enabled = 0
+let g:airline#extensions#wordcount#enabled = 0
+
+let g:lightline                  = {}
+let g:lightline.tabline          = {'left': [['buffers']], 'right': [['close']]}
+let g:lightline.component_expand = {'buffers': 'lightline#bufferline#buffers'}
+let g:lightline.component_type   = {'buffers': 'tabsel'}
