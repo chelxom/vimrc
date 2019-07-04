@@ -35,6 +35,9 @@ if has("gui_running")
    "colo solarized
    colo monokai
    set guifont=mononoki:h10
+
+   set lines=48
+   set columns=140
 else
    colo industry
 endif
@@ -57,12 +60,6 @@ inoremap jj <ESC>
 
 " Solaized
 let g:solarized_menu=0
-
-let g:airline_extensions = []
-let g:airline_highlighting_cache = 0
-let g:airline_powerline_fonts = 0
-let g:airline#extensions#tabline#enabled = 0
-let g:airline#extensions#wordcount#enabled = 0
 
 let g:lightline                  = {}
 let g:lightline.tabline          = {'left': [['buffers']], 'right': [['close']]}
