@@ -19,7 +19,7 @@ filetype plugin indent on
 syntax on
 
 set encoding=utf-8
-set fileencodings=ucs-bom,utf-8,cp932,cp936,gb18030,latin1
+set fileencodings=ucs-bom,utf-8,cp936,gb18030,latin1
 
 " Set encoding to utf-8 first
 " Then set GUI language to "C", and reload menu
