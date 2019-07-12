@@ -68,6 +68,11 @@ nnoremap <C-Z> :u<CR>
 
 inoremap jj <ESC>
 
+" In Visual mode, after indenting using > or <, re-select the visual block
+" to enable continous indenting.
+vnoremap > >gv
+vnoremap < <gv
+
 " Solaized
 let g:solarized_menu=0
 
