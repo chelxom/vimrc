@@ -20,6 +20,8 @@ syntax on
 
 set encoding=utf-8
 set fileencodings=ucs-bom,utf-8,cp936,gb18030,latin1
+" Global fenc is for new file
+setglobal fileencoding=utf-8
 
 " Set encoding to utf-8 first
 " Then set GUI language to "C", and reload menu
