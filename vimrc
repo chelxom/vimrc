@@ -18,6 +18,15 @@ filetype on
 filetype plugin indent on
 syntax on
 
+set encoding=utf-8
+set fileencodings=ucs-bom,utf-8,cp936,gb18030,cp932,latin1
+
+" Set encoding to utf-8 first
+" Then set GUI language to "C", and reload menu
+lan C
+source $VIMRUNTIME/delmenu.vim
+source $VIMRUNTIME/menu.vim
+
 set nobackup
 set noswapfile
 
