@@ -1,3 +1,26 @@
+" Platform detection
+let s:is_windows = 0
+let s:is_macos = 0
+let s:is_linux = 0
+if has("win32") || has("win64")
+    let s:is_windows = 1
+elseif has("unix")
+    let uname = system("uname -s")
+    if (uname == "Darwin" || uname == "Darwin\n")
+        let s:is_macos = 1
+    else
+        let s:is_linux = 1
+    endif
+endif
+
+if s:is_windows
+    " Windows by-default use `~/vimfiles` as 'rtp'.
+    set rtp=$HOME/.vim,$VIM/vimfiles,$VIMRUNTIME,$VIM/vimfiles/after,$HOME/.vim/after
+endif
+
+
+
+
 set rtp+=~/.vim/bundle/Vundle.vim/
 call vundle#begin()
 Plugin 'VundleVim/Vundle.vim'
