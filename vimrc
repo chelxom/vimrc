@@ -13,30 +13,22 @@ elseif has("unix")
     endif
 endif
 
-if s:is_windows
-    " Windows by-default use `~/vimfiles` as 'rtp'.
-    set rtp=$HOME/.vim,$VIM/vimfiles,$VIMRUNTIME,$VIM/vimfiles/after,$HOME/.vim/after
-endif
+" Plugins
+call plug#begin('~/.vim/bundle')
+Plug 'VundleVim/Vundle.vim'
 
+Plug 'itchyny/lightline.vim'
+Plug 'mengelbrecht/lightline-bufferline'
+Plug 'crusoexia/vim-monokai'
+Plug 'altercation/vim-colors-solarized'
 
+Plug 'vim-syntastic/syntastic'
+Plug 'vim-scripts/LargeFile'
 
+Plug 'idris-hackers/idris-vim'
+Plug 'japesinator/vim-IdrisConceal'
+call plug#end()
 
-set rtp+=~/.vim/bundle/Vundle.vim/
-call vundle#begin()
-Plugin 'VundleVim/Vundle.vim'
-
-"Plugin 'bling/vim-airline' 
-Plugin 'itchyny/lightline.vim'
-Plugin 'mengelbrecht/lightline-bufferline'
-Plugin 'crusoexia/vim-monokai'
-Plugin 'altercation/vim-colors-solarized'
-
-Plugin 'vim-syntastic/syntastic'
-
-Plugin 'idris-hackers/idris-vim'
-Plugin 'japesinator/vim-IdrisConceal'
-
-call vundle#end()
 filetype on
 filetype plugin indent on
 syntax on

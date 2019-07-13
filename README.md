@@ -4,16 +4,16 @@
 On Windows:
 ```shell
 git clone https://github.com/chelxom/vimrc %USERPROFILE%/.vim
-git clone https://github.com/VundleVim/Vundle.vim.git %USERPROFILE%/.vim/bundle/Vundle.vim
+curl -fLo %USERPROFILE%/.vim/autoload/plug.vim --create-dirs https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
 mklink /d %USERPROFILE%\vimfiles %USERPROFILE%\.vim
-vim +PluginInstall +qall
+vim +PlugInstall
 ```
 
 On Unix-like:
 ```shell
 git clone https://github.com/chelxom/vimrc ~/.vim
-git clone https://github.com/VundleVim/Vundle.vim.git ~/.vim/bundle/Vundle.vim
-vim +PluginInstall +qall
+curl -fLo ~/.vim/autoload/plug.vim --create-dirs https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
+vim +PlugInstall
 ```
 
 On Windows, Vim doesn't treats `~/.vim/` as `'runtimepath'`/`'rtp'` by default, but `~/vimfiles/`.
