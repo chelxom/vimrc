@@ -15,18 +15,16 @@ endif
 
 " Plugins
 call plug#begin('~/.vim/bundle')
-Plug 'VundleVim/Vundle.vim'
-
 Plug 'itchyny/lightline.vim'
 Plug 'mengelbrecht/lightline-bufferline'
 Plug 'crusoexia/vim-monokai'
-Plug 'altercation/vim-colors-solarized'
+"Plug 'altercation/vim-colors-solarized'
 
-Plug 'vim-syntastic/syntastic'
 Plug 'vim-scripts/LargeFile'
+Plug 'skywind3000/asyncrun.vim'
+Plug 'w0rp/ale'
 
-Plug 'idris-hackers/idris-vim'
-Plug 'japesinator/vim-IdrisConceal'
+Plug 'idris-hackers/idris-vim', { 'for':'idris' }
 call plug#end()
 
 filetype on
@@ -44,6 +42,7 @@ lan C
 source $VIMRUNTIME/delmenu.vim
 source $VIMRUNTIME/menu.vim
 
+let maplocalleader = " "
 set nobackup
 set noswapfile
 
@@ -90,8 +89,10 @@ inoremap jj <ESC>
 vnoremap > >gv
 vnoremap < <gv
 
-" Solaized
-let g:solarized_menu=0
+" Search `.tags` file:
+"   in current folder, ';' searches recursively until root;
+"   in PWD.
+set tags=./.tags;,.tags
 
 let g:lightline                  = {}
 let g:lightline.tabline          = {'left': [['buffers']], 'right': [['close']]}
