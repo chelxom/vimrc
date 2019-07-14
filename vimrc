@@ -45,15 +45,15 @@ source $VIMRUNTIME/menu.vim
 let maplocalleader = " "
 set nobackup
 set noswapfile
-
-set number
 set nomodeline
 
-
+set number
 set backspace=indent,eol,start
+
 set expandtab
-set smarttab
 set shiftwidth=4
+set softtabstop=4
+
 set hls
 
 set background=dark
