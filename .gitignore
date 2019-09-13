@@ -1,2 +1,5 @@
 # Vundle.vim
 /bundle/
+
+# vim-plug
+/autoload/plug.vim
