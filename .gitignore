@@ -3,3 +3,5 @@
 
 # vim-plug
 /autoload/plug.vim
+
+*.zip
