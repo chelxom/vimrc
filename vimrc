@@ -100,6 +100,9 @@ inoremap jj <ESC>
 vnoremap > >gv
 vnoremap < <gv
 
+let g:netrw_banner=0
+" Open file in new 1:H-/2:V-split/3:tab/4:window.
+let g:netrw_browse_split = 1
 " Netrw explorer size is x% of the buffer window.
 let g:netrw_winsize=30
 

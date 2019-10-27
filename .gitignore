@@ -4,4 +4,7 @@
 # vim-plug
 /autoload/plug.vim
 
+# netrw history
+.netrwhist
+
 *.zip
