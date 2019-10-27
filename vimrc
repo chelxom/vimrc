@@ -24,6 +24,7 @@ Plug 'vim-scripts/LargeFile'
 Plug 'skywind3000/asyncrun.vim'
 Plug 'w0rp/ale'
 
+Plug 'neovimhaskell/haskell-vim', { 'for':'haskell' }
 Plug 'idris-hackers/idris-vim', { 'for':'idris' }
 call plug#end()
 
