@@ -70,19 +70,28 @@ else
    colo industry
 endif
 
+nnoremap <F1> :help 
 nnoremap <F2> :set syntax=
 set laststatus=2
 set stl=%F%m\ %Y
 
-" Key mappings
-inoremap <C-S> <ESC>:w<CR>a
-nnoremap <C-S> :w<CR>
+command! -nargs=* VimGrep noautocmd lvimgrep <args>
+nnoremap <F3> :VimGrep
 
-inoremap <C-C> "+y
+" Key mappings
+function! s:MapNI(lhs, rhs, ...)
+    let a = get(a:000, 0, "a") " Insert after run
+    exec join(["nnoremap",a:lhs,a:rhs."<CR>"])
+    exec join(["inoremap",a:lhs,"<ESC>".a:rhs."<CR>".a])
+endfunction
+
+call s:MapNI("<c-s>", ":w")
+call s:MapNI("<c-z>", ":u")
+call s:MapNI("<c-e>", ":Lexplore", "")
+
+" Copy/paste
 vnoremap <c-c> "+y
 inoremap <C-V> <ESC>"+pa
-inoremap <C-Z> <ESC>:u<CR>a
-nnoremap <C-Z> :u<CR>
 
 inoremap jj <ESC>
 
@@ -90,6 +99,9 @@ inoremap jj <ESC>
 " to enable continous indenting.
 vnoremap > >gv
 vnoremap < <gv
+
+" Netrw explorer size is x% of the buffer window.
+let g:netrw_winsize=30
 
 " Search `.tags` file:
 "   in current folder, ';' searches recursively until root;
