@@ -23,7 +23,9 @@ Plug 'crusoexia/vim-monokai'
 Plug 'vim-scripts/LargeFile'
 Plug 'skywind3000/asyncrun.vim'
 Plug 'w0rp/ale'
+Plug 'jpalardy/vim-slime'
 
+Plug 'JuliaEditorSupport/julia-vim', { 'for':'julia' }
 Plug 'neovimhaskell/haskell-vim', { 'for':'haskell' }
 Plug 'idris-hackers/idris-vim', { 'for':'idris' }
 call plug#end()
@@ -100,6 +102,8 @@ inoremap jj <ESC>
 vnoremap > >gv
 vnoremap < <gv
 
+au FileType julia runtime macros/matchit.vim
+
 let g:netrw_banner=0
 " Open file in new 1:H-/2:V-split/3:tab/4:window.
 let g:netrw_browse_split = 1
@@ -115,3 +119,9 @@ let g:lightline                  = {}
 let g:lightline.tabline          = {'left': [['buffers']], 'right': [['close']]}
 let g:lightline.component_expand = {'buffers': 'lightline#bufferline#buffers'}
 let g:lightline.component_type   = {'buffers': 'tabsel'}
+
+let g:slime_target = "vimterminal"
+let g:slime_no_mappings = 1
+vmap <c-cr>     <Plug>SlimeRegionSend
+nmap <c-cr>     <Plug>SlimeLineSend
+nmap <c-c><c-c> <Plug>SlimeParagraphSend
