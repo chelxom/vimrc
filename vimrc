@@ -24,6 +24,7 @@ Plug 'vim-scripts/LargeFile'
 Plug 'skywind3000/asyncrun.vim'
 Plug 'w0rp/ale'
 Plug 'jpalardy/vim-slime'
+Plug 'haya14busa/incsearch.vim'
 
 Plug 'JuliaEditorSupport/julia-vim', { 'for':'julia' }
 Plug 'neovimhaskell/haskell-vim', { 'for':'haskell' }
@@ -125,3 +126,16 @@ let g:slime_no_mappings = 1
 vmap <c-cr>     <Plug>SlimeRegionSend
 nmap <c-cr>     <Plug>SlimeLineSend
 nmap <c-c><c-c> <Plug>SlimeParagraphSend
+
+" Keymap for incsearch.vim
+map /  <Plug>(incsearch-forward)
+map ?  <Plug>(incsearch-backward)
+map g/ <Plug>(incsearch-stay)
+
+let g:incsearch#auto_nohlsearch = 1
+map n  <Plug>(incsearch-nohl-n)
+map N  <Plug>(incsearch-nohl-N)
+map *  <Plug>(incsearch-nohl-*)
+map #  <Plug>(incsearch-nohl-#)
+map g* <Plug>(incsearch-nohl-g*)
+map g# <Plug>(incsearch-nohl-g#)
