@@ -13,6 +13,11 @@ elseif has("unix")
     endif
 endif
 
+let s:has_gui = 0
+if (has("gui_running"))
+    let s:has_gui = 1
+endif
+
 " Plugins
 call plug#begin('~/.vim/bundle')
 Plug 'itchyny/lightline.vim'
@@ -59,18 +64,21 @@ set shiftwidth=4
 set softtabstop=4
 
 set hls
+set incsearch
 
 set background=dark
 set guioptions-=T
-if has("gui_running")
+if s:has_gui || s:is_macos
    "colo solarized
    colo monokai
    set guifont=mononoki:h10
-
-   set lines=48
-   set columns=140
 else
    colo industry
+endif
+
+if s:has_gui
+   set lines=48
+   set columns=140
 endif
 
 nnoremap <F1> :help 
@@ -78,6 +86,9 @@ nnoremap <F2> :set syntax=
 set laststatus=2
 set stl=%F%m\ %Y
 
+" Usage: `:VimGrep /pattern/ **/*.cpp` && `:lopen`.
+" - `**` recursively searches all subfolders.
+" - `*` one folder.
 command! -nargs=* VimGrep noautocmd lvimgrep <args>
 nnoremap <F3> :VimGrep
 
@@ -103,7 +114,43 @@ inoremap jj <ESC>
 vnoremap > >gv
 vnoremap < <gv
 
-au FileType julia runtime macros/matchit.vim
+" Create matching highlight visuals.
+" Execute `:1mat M1 /pattern/` or :2mat :3mat.
+let mat_colors = [['Yellow', 'Black'], ['LightGreen', 'Black'], ['White', 'Black']]
+for idx in range(len(mat_colors))
+    " [ bg, fg ]
+    let pair = mat_colors[idx]
+    let mat_cmd = 'hi M'.(idx + 1).' guibg='.pair[0].' guifg='.pair[1]
+    execute(mat_cmd)
+endfor
+
+" Key-* & Key-# used to search with pattern /\<x\>/, which does not handle
+" C-style pointer operator->, because char '-' is regarded as element of a word.
+" So refine these keys to take C-style identifier into consideration.
+function! BuildCStyleSearchPattern(forward, exactTail)
+    let cursorWord = expand('<cword>')
+    let identifier = matchstr(cursorWord, '\h\w*')
+    let pattern = '\<'.identifier
+
+    if (a:exactTail == 1)
+        let pattern .= '\i\@!'
+    endif
+
+    let searchLeading = '/'
+    if (a:forward == 0)
+        let searchLeading = '?'
+    endif
+
+    return 'normal! '.searchLeading.pattern."\<CR>"
+endfunction
+
+" Note that :set hls will be reset when function returns.
+nnoremap <silent> * 	        :set hls<CR>:exe BuildCStyleSearchPattern(1, 1)<CR>
+nnoremap <silent> <kMultiply>	:set hls<CR>:exe BuildCStyleSearchPattern(1, 0)<CR>
+nnoremap <silent> #		:set hls<CR>:exe BuildCStyleSearchPattern(0, 1)<CR>
+
+"TODO not working
+"au FileType julia runtime macros/matchit.vim
 
 let g:netrw_banner=0
 " Open file in new 1:H-/2:V-split/3:tab/4:window.
