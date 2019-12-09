@@ -34,6 +34,8 @@ Plug 'haya14busa/incsearch.vim'
 Plug 'JuliaEditorSupport/julia-vim', { 'for':'julia' }
 Plug 'neovimhaskell/haskell-vim', { 'for':'haskell' }
 Plug 'idris-hackers/idris-vim', { 'for':'idris' }
+Plug 'PProvost/vim-ps1', { 'for':'ps1' }
+Plug 'rhysd/vim-llvm', { 'for':['llvm', 'tablegen'] }
 call plug#end()
 
 filetype on
