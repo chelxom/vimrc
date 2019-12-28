@@ -188,3 +188,7 @@ map *  <Plug>(incsearch-nohl-*)
 map #  <Plug>(incsearch-nohl-#)
 map g* <Plug>(incsearch-nohl-g*)
 map g# <Plug>(incsearch-nohl-g#)
+
+" Use quickfix window for errors and warnings,
+" leave loclist window for cmds like :lgrep.
+let g:ale_set_quickfix = 1
