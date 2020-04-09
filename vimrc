@@ -48,7 +48,7 @@ Plug 'w0rp/ale'
 Plug 'jpalardy/vim-slime'
 Plug 'haya14busa/incsearch.vim'
 Plug 'andymass/vim-matchup'
-"Plug 'SirVer/ultisnips'
+Plug 'SirVer/ultisnips'
 
 Plug 'JuliaEditorSupport/julia-vim', { 'for':'julia' }
 Plug 'neovimhaskell/haskell-vim', { 'for':'haskell' }
