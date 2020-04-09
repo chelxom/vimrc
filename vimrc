@@ -4,12 +4,18 @@ let s:is_macos = 0
 let s:is_linux = 0
 if has("win32") || has("win64")
     let s:is_windows = 1
+    let s:exe_ext = '.exe'
+    let s:dll_ext = '.dll'
 elseif has("unix")
     let uname = system("uname -s")
     if (uname == "Darwin" || uname == "Darwin\n")
         let s:is_macos = 1
+        let s:exe_ext = ''
+        let s:dll_ext = '.dylib'
     else
         let s:is_linux = 1
+        let s:exe_ext = ''
+        let s:dll_ext = '.so'
     endif
 endif
 
@@ -17,6 +23,17 @@ let s:has_gui = 0
 if (has("gui_running"))
     let s:has_gui = 1
 endif
+
+" Detect Python3
+for py3_exe in ['~/Miniconda3/envs/py3_x86_vim/python' . s:exe_ext]
+    let py3_exe = fnamemodify(py3_exe, ':p')
+    if executable(py3_exe)
+        let &pythonthreehome = fnamemodify(py3_exe, ':h')
+        " Get lib like `python37.dll`, but not `python3.dll`.
+        let &pythonthreedll = glob(&pythonthreehome. '/python3?*' . s:dll_ext)
+        break
+    endif
+endfor
 
 " Plugins
 call plug#begin('~/.vim/bundle')
@@ -31,6 +48,7 @@ Plug 'w0rp/ale'
 Plug 'jpalardy/vim-slime'
 Plug 'haya14busa/incsearch.vim'
 Plug 'andymass/vim-matchup'
+"Plug 'SirVer/ultisnips'
 
 Plug 'JuliaEditorSupport/julia-vim', { 'for':'julia' }
 Plug 'neovimhaskell/haskell-vim', { 'for':'haskell' }
@@ -97,15 +115,18 @@ command! -nargs=* VimGrep noautocmd lvimgrep <args>
 nnoremap <F3> :VimGrep
 
 " Key mappings
+" Usage: call s:MapNI('TRIGGER-KEYS', 'MAPPED-KEYS' [, 'POST-KEYS'])
 function! s:MapNI(lhs, rhs, ...)
-    let a = get(a:000, 0, "a") " Insert after run
+    " Keys to hit after <CR>. By default are "a", which is to enter insert
+    " mode.
+    let postkeys = get(a:000, 0, "a")
     exec join(["nnoremap",a:lhs,a:rhs."<CR>"])
-    exec join(["inoremap",a:lhs,"<ESC>".a:rhs."<CR>".a])
+    exec join(["inoremap",a:lhs,"<ESC>".a:rhs."<CR>".postkeys])
 endfunction
 
 call s:MapNI("<c-s>", ":w")
 call s:MapNI("<c-z>", ":u")
-call s:MapNI("<c-e>", ":Lexplore", "")
+call s:MapNI("<c-e>", ":Lexplore", "") " Set postkeys to none.
 
 " Copy/paste
 vnoremap <c-c> "+y
@@ -211,3 +232,11 @@ if (s:is_windows)
 elseif (s:is_macos)
     let g:vimtex_view_method = 'skim'
 endif
+au FileType tex,plaintex set conceallevel = 1
+" Auto hide accents, bold/italic, delimiter, math symbol, Greek.
+let g:tex_conceal = 'abdmg'
+
+" Note: Don't use `<tab>` when using YouCompleteMe.
+let g:UltiSnipsExpandTrigger="<tab>"
+let g:UltiSnipsJumpForwardTrigger="<c-b>"
+let g:UltiSnipsJumpBackwardTrigger="<c-z>"
