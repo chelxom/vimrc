@@ -149,12 +149,6 @@ for idx in range(len(mat_colors))
     execute(mat_cmd)
 endfor
 
-" Note that :set hls will be reset when function returns.
-au FileType c,cpp 
-            \ nnoremap <silent> * 	    :exe c#BuildCStyleSearchPattern(1, 1)<CR> |
-            \ nnoremap <silent> <kMultiply> :exe c#BuildCStyleSearchPattern(1, 0)<CR> |
-            \ nnoremap <silent> #	    :exe c#BuildCStyleSearchPattern(0, 1)<CR>
-
 "TODO not working
 "au FileType julia runtime macros/matchit.vim
 
@@ -213,7 +207,9 @@ if (s:is_windows)
 elseif (s:is_macos)
     let g:vimtex_view_method = 'skim'
 endif
-au FileType tex,plaintex set conceallevel = 1
+au FileType tex,plaintex set conceallevel=1 |
+            \ exe 'hi Conceal guibg=' . colors#GetHighlightColor('Normal', 'guibg') |
+            \ exe 'hi Conceal ctermbg=' . colors#GetHighlightColor('Normal', 'ctermbg')
 " Auto hide accents, bold/italic, delimiter, math symbol, Greek.
 let g:tex_conceal = 'abdmg'
 
