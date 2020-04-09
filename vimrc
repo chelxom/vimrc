@@ -30,12 +30,14 @@ Plug 'skywind3000/asyncrun.vim'
 Plug 'w0rp/ale'
 Plug 'jpalardy/vim-slime'
 Plug 'haya14busa/incsearch.vim'
+Plug 'andymass/vim-matchup'
 
 Plug 'JuliaEditorSupport/julia-vim', { 'for':'julia' }
 Plug 'neovimhaskell/haskell-vim', { 'for':'haskell' }
 Plug 'idris-hackers/idris-vim', { 'for':'idris' }
 Plug 'PProvost/vim-ps1', { 'for':'ps1' }
 Plug 'rhysd/vim-llvm', { 'for':['llvm', 'tablegen'] }
+Plug 'lervag/vimtex', { 'for':['tex','plaintex'] }
 call plug#end()
 
 filetype on
@@ -192,3 +194,20 @@ map g# <Plug>(incsearch-nohl-g#)
 " Use quickfix window for errors and warnings,
 " leave loclist window for cmds like :lgrep.
 let g:ale_set_quickfix = 1
+
+let g:tex_flavor = 'latex'
+let g:matchup_override_vimtex = 1
+if (s:is_windows)
+    let g:vimtex_view_general_viewer = 'SumatraPDF'
+    let g:vimtex_view_general_options
+                \ = '-reuse-instance -forward-search @tex @line @pdf'
+                \ . ' -inverse-search "' . exepath(v:progpath)
+                \ . ' --servername ' . v:servername
+                \ . ' --remote-send \"^<C-\^>^<C-n^>'
+                \ . ':execute ''drop '' . fnameescape(''\%f'')^<CR^>'
+                \ . ':\%l^<CR^>:normal\! zzzv^<CR^>'
+                \ . ':call remote_foreground('''.v:servername.''')^<CR^>^<CR^>\""'
+
+elseif (s:is_macos)
+    let g:vimtex_view_method = 'skim'
+endif

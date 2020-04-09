@@ -21,4 +21,23 @@ However it's ok to clone Vundle into `~/.vim/` since Vundle is setup consistentl
 And dependencies it installs will be put under `~/.vim/` and well recognized by Vim (Vundle adds their path to `'rtp'` too).
 
 ## Optional dependencies
-Font mononoki: <https://github.com/madmalik/mononoki/>
+
+### Font
+-   mononoki: <https://github.com/madmalik/mononoki/>
+
+### TeX
+-   MiKTeX: <https://miktex.org/>
+
+-   On Windows:
+    -   SumatraPDF (portable): <https://www.sumatrapdfreader.org/free-pdf-reader.html>
+
+        Rename the exe to `SumatraPDF.exe` and add its folder to `PATH`.
+
+    -   Perl (portable): <http://strawberryperl.com/>
+
+        `INSTALL/perl/bin` must be in `PATH`.
+
+-   On MacOS:
+    -   Skim
+
+    TODO
