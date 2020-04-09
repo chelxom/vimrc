@@ -149,30 +149,11 @@ for idx in range(len(mat_colors))
     execute(mat_cmd)
 endfor
 
-" Key-* & Key-# used to search with pattern /\<x\>/, which does not handle
-" C-style pointer operator->, because char '-' is regarded as element of a word.
-" So refine these keys to take C-style identifier into consideration.
-function! BuildCStyleSearchPattern(forward, exactTail)
-    let cursorWord = expand('<cword>')
-    let identifier = matchstr(cursorWord, '\h\w*')
-    let pattern = '\<'.identifier
-
-    if (a:exactTail == 1)
-        let pattern .= '\i\@!'
-    endif
-
-    let searchLeading = '/'
-    if (a:forward == 0)
-        let searchLeading = '?'
-    endif
-
-    return 'normal! '.searchLeading.pattern."\<CR>"
-endfunction
-
 " Note that :set hls will be reset when function returns.
-nnoremap <silent> * 	        :set hls<CR>:exe BuildCStyleSearchPattern(1, 1)<CR>
-nnoremap <silent> <kMultiply>	:set hls<CR>:exe BuildCStyleSearchPattern(1, 0)<CR>
-nnoremap <silent> #		:set hls<CR>:exe BuildCStyleSearchPattern(0, 1)<CR>
+au FileType c,cpp 
+            \ nnoremap <silent> * 	    :exe c#BuildCStyleSearchPattern(1, 1)<CR> |
+            \ nnoremap <silent> <kMultiply> :exe c#BuildCStyleSearchPattern(1, 0)<CR> |
+            \ nnoremap <silent> #	    :exe c#BuildCStyleSearchPattern(0, 1)<CR>
 
 "TODO not working
 "au FileType julia runtime macros/matchit.vim
