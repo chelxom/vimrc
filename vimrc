@@ -207,13 +207,13 @@ if (s:is_windows)
 elseif (s:is_macos)
     let g:vimtex_view_method = 'skim'
 endif
-au FileType tex,plaintex set conceallevel=1 |
-            \ exe 'hi Conceal guibg=' . colors#GetHighlightColor('Normal', 'guibg') |
-            \ exe 'hi Conceal ctermbg=' . colors#GetHighlightColor('Normal', 'ctermbg')
-" Auto hide accents, bold/italic, delimiter, math symbol, Greek.
-let g:tex_conceal = 'abdmg'
+"au FileType tex,plaintex set conceallevel=1 |
+"            \ exe 'hi Conceal guibg=' . colors#GetHighlightColor('Normal', 'guibg') |
+"            \ exe 'hi Conceal ctermbg=' . colors#GetHighlightColor('Normal', 'ctermbg')
+"" Auto hide accents, bold/italic, delimiter, math symbol, Greek.
+"let g:tex_conceal = 'abdmg'
 
 " Note: Don't use `<tab>` when using YouCompleteMe.
 let g:UltiSnipsExpandTrigger="<tab>"
-let g:UltiSnipsJumpForwardTrigger="<c-b>"
-let g:UltiSnipsJumpBackwardTrigger="<c-z>"
+let g:UltiSnipsJumpForwardTrigger="<tab>"
+let g:UltiSnipsJumpBackwardTrigger="<c-tab>"

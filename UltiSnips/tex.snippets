@@ -1,1 +1,63 @@
-#snippet
+snippet article "Template for article" b
+\documentclass{article}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{array}
+\usepackage{bm}
+
+\begin{document}
+
+$1
+
+\end{document}
+endsnippet
+
+snippet $ "Inline math"
+\$${VISUAL}$1\$$0
+endsnippet
+
+snippet \[ "Display math" b
+\[
+    ${VISUAL}$1
+\]
+$0
+endsnippet
+
+snippet / "Fraction"
+\frac{${1:${VISUAL:1}}}{$2}
+endsnippet
+
+global !p
+bracket_pairs = {
+    "(":    ")",
+    "[":    "]",
+    "{":    "}",
+    "<":    ">",
+    "|":    "|",
+    "||":   "||",
+    "\\langle":	"\\rangle",
+    "\\lfloor":	"\\rfloor",
+    "\\lceil":	"\\rceil",
+}
+endglobal
+
+snippet "\\left(\S*)" "Brackets" r
+\left`!p
+    snip.rv = match.group(1)
+`$1${VISUAL}$2\right`!p
+    lb = match.group(1)
+    snip.rv = bracket_pairs.get(lb, lb)
+`
+endsnippet
+
+# require \usepackage{bm}
+snippet bm "Math bold"
+\bm{$1}
+endsnippet
+
+# require \usepackage{amssymb}
+snippet "([NZQPRC])\1" "Number domain" rA
+\mathbb{`!p
+    snip.rv = match.group(1)
+`}
+endsnippet
