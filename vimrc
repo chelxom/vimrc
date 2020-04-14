@@ -19,15 +19,7 @@ elseif has("unix")
     endif
 endif
 
-let s:has_gui = 0
-if (has("gui_running"))
-    let s:has_gui = 1
-endif
-
-let s:has_py3 = 0
-if (has("python3"))
-    let s:has_py3 = 1
-endif
+let s:has_gui = has("gui_running")
 
 " Detect Python3
 for py3_exe in ['~/Miniconda3/envs/py3_x86_vim/python' . s:exe_ext]
@@ -39,6 +31,14 @@ for py3_exe in ['~/Miniconda3/envs/py3_x86_vim/python' . s:exe_ext]
         break
     endif
 endfor
+let s:has_py3 = has("python3") " Set after detection.
+
+" Ref: https://github.com/junegunn/vim-plug/wiki/tips#conditional-activation
+" Remark: Involved functions to `Plug` command must be global.
+function! Cond(cond, ...)
+  let opts = get(a:000, 0, {})
+  return a:cond ? opts : extend(opts, { 'on': [], 'for': [] })
+endfunction
 
 " Plugins
 call plug#begin('~/.vim/bundle')
@@ -53,9 +53,9 @@ Plug 'w0rp/ale'
 Plug 'jpalardy/vim-slime'
 Plug 'haya14busa/incsearch.vim'
 Plug 'andymass/vim-matchup'
-if s:has_py3
-    Plug 'SirVer/ultisnips'
-endif
+
+" Always register the plugin, but when turn it on when there's python binding.
+Plug 'SirVer/ultisnips', Cond(has('python3'))
 
 Plug 'JuliaEditorSupport/julia-vim', { 'for':'julia' }
 Plug 'neovimhaskell/haskell-vim', { 'for':'haskell' }
