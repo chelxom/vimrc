@@ -24,6 +24,11 @@ if (has("gui_running"))
     let s:has_gui = 1
 endif
 
+let s:has_py3 = 0
+if (has("python3"))
+    let s:has_py3 = 1
+endif
+
 " Detect Python3
 for py3_exe in ['~/Miniconda3/envs/py3_x86_vim/python' . s:exe_ext]
     let py3_exe = fnamemodify(py3_exe, ':p')
@@ -48,7 +53,9 @@ Plug 'w0rp/ale'
 Plug 'jpalardy/vim-slime'
 Plug 'haya14busa/incsearch.vim'
 Plug 'andymass/vim-matchup'
-Plug 'SirVer/ultisnips'
+if s:has_py3
+    Plug 'SirVer/ultisnips'
+endif
 
 Plug 'JuliaEditorSupport/julia-vim', { 'for':'julia' }
 Plug 'neovimhaskell/haskell-vim', { 'for':'haskell' }
