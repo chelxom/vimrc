@@ -43,10 +43,10 @@ endglobal
 
 snippet "\\left(\S*)" "Brackets" r
 \left`!p
-    snip.rv = match.group(1)
+snip.rv = match.group(1)
 `$1${VISUAL}$2\right`!p
-    lb = match.group(1)
-    snip.rv = bracket_pairs.get(lb, lb)
+lb = match.group(1)
+snip.rv = bracket_pairs.get(lb, lb)
 `
 endsnippet
 
@@ -58,6 +58,57 @@ endsnippet
 # require \usepackage{amssymb}
 snippet "([NZQPRC])\1" "Number domain" rA
 \mathbb{`!p
-    snip.rv = match.group(1)
+snip.rv = match.group(1)
 `}
+endsnippet
+
+global !p
+_shortcuts = {
+    # Single letter
+    "A":    "\\forall",
+    "E":    "\\exists",
+    "P":    "\\prod",
+    "S":    "\\sum",
+    "U":    "\\bigcup",
+    "V":    "\\bigvee",
+    "u":    "\\cup",
+    "v":    "\\vee",
+    "x":    "\\times",
+    "!":    "\\neg",
+    "<":    "\\leftarrow",
+    ">":    "\\rightarrow",
+    "(":    "\\subset",
+    ")":    "\\supset",
+    "*":    "\\star",
+    # 2 letters
+    "<=":   "\\Leftarrow",
+    "=>":   "\\Rightarrow",
+    "(=":   "\\subseteq",
+    ")=":   "\\supseteq",
+    "~U":   "\\bigcap",
+    "~V":   "\\bigwedge",
+    "~u":   "\\cap",
+    "~v":   "\\wedge",
+}
+def match_shortcuts(snip):
+    # Take the chars before the cursor, so that we can do rewrite in the middle
+    # of a line.
+    line = snip.buffer[snip.line][0:snip.column+1]
+    # re.match doesn't match $.
+    match = re.search("\\\\([^\\\\]+)$", line)
+    if match is None:
+        return False
+    shortcut = match.group(1)
+    return shortcut in _shortcuts
+def rewrite_shortcuts(snip, s):
+    snip.rv = _shortcuts[s]
+endglobal
+
+# Remark: only expand to symbol, not to the name of a command.
+context "match_shortcuts(snip)"
+snippet "\\([^\\]+)" "Shortcut collection" re
+`!p
+# match.group must be a valid shortcut since we checked in the context.
+rewrite_shortcuts(snip, match.group(1))
+`
 endsnippet
