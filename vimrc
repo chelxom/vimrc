@@ -216,7 +216,10 @@ if (s:is_windows)
 elseif (s:is_macos)
     let g:vimtex_view_method = 'skim'
 endif
-let g:vimtex_quickfix_ignore_all_warnings=1
+let g:vimtex_quickfix_latexlog = {
+            \   'general': 0
+            \ }
+let g:vimtex_quickfix_open_on_warning = 0
 "au FileType tex,plaintex set conceallevel=1 |
 "            \ exe 'hi Conceal guibg=' . colors#GetHighlightColor('Normal', 'guibg') |
 "            \ exe 'hi Conceal ctermbg=' . colors#GetHighlightColor('Normal', 'ctermbg')
