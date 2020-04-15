@@ -12,6 +12,10 @@ $1
 \end{document}
 endsnippet
 
+snippet pkg "Use package" b
+\usepackage{$1}
+endsnippet
+
 snippet $ "Inline math"
 \$${VISUAL}$1\$$0
 endsnippet
@@ -53,6 +57,12 @@ endsnippet
 # require \usepackage{bm}
 snippet bm "Math bold"
 \bm{$1}
+endsnippet
+
+snippet "(bf|cal|it|rm|sf|tt|bb|frak|scr)" "Math fonts" r
+\math`!p
+snip.rv = match.group(1)
+`{$1}
 endsnippet
 
 # require \usepackage{amssymb}
