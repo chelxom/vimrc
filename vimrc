@@ -197,8 +197,10 @@ map g# <Plug>(incsearch-nohl-g#)
 " Use quickfix window for errors and warnings,
 " leave loclist window for cmds like :lgrep.
 let g:ale_set_quickfix = 1
+let g:ale_open_list = 0
 
 let g:tex_flavor = 'latex'
+let g:tex_fast = 'bmMv'
 let g:matchup_override_vimtex = 1
 if (s:is_windows)
     let g:vimtex_view_general_viewer = 'SumatraPDF'
@@ -214,6 +216,7 @@ if (s:is_windows)
 elseif (s:is_macos)
     let g:vimtex_view_method = 'skim'
 endif
+let g:vimtex_quickfix_ignore_all_warnings=1
 "au FileType tex,plaintex set conceallevel=1 |
 "            \ exe 'hi Conceal guibg=' . colors#GetHighlightColor('Normal', 'guibg') |
 "            \ exe 'hi Conceal ctermbg=' . colors#GetHighlightColor('Normal', 'ctermbg')
