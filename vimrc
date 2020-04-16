@@ -22,8 +22,8 @@ endif
 let s:has_gui = has("gui_running")
 
 " Detect Python3
-for py3_exe in ['~/Miniconda3/envs/py3_x86_vim/python' . s:exe_ext]
-    let py3_exe = fnamemodify(py3_exe, ':p')
+for py3_exe in ['~/Miniconda3/envs/py3_x86_vim/python', '~/AppData/Local/Continuum/miniconda3/envs/py3_x86_vim/python']
+    let py3_exe = fnamemodify(py3_exe . s:exe_ext, ':p')
     if executable(py3_exe)
         let &pythonthreehome = fnamemodify(py3_exe, ':h')
         " Get lib like `python37.dll`, but not `python3.dll`.
