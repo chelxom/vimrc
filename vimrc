@@ -220,6 +220,9 @@ let g:vimtex_quickfix_latexlog = {
             \   'general': 0
             \ }
 let g:vimtex_quickfix_open_on_warning = 0
+let g:vimtex_quickfix_ignore_filters = [
+            \'You should put a space in front of parenthesis',
+            \]
 "au FileType tex,plaintex set conceallevel=1 |
 "            \ exe 'hi Conceal guibg=' . colors#GetHighlightColor('Normal', 'guibg') |
 "            \ exe 'hi Conceal ctermbg=' . colors#GetHighlightColor('Normal', 'ctermbg')
