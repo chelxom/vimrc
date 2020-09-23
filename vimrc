@@ -62,7 +62,7 @@ Plug 'neovimhaskell/haskell-vim', { 'for':'haskell' }
 Plug 'idris-hackers/idris-vim', { 'for':'idris' }
 Plug 'PProvost/vim-ps1', { 'for':'ps1' }
 Plug 'rhysd/vim-llvm', { 'for':['llvm', 'tablegen'] }
-Plug 'lervag/vimtex', { 'for':['tex','plaintex'] }
+Plug 'lervag/vimtex'
 Plug 'DrTom/fsharp-vim'
 call plug#end()
 
@@ -205,7 +205,7 @@ let g:tex_fast = 'bmMv'
 let g:matchup_override_vimtex = 1
 let g:matchup_matchparen_deferred = 1
 let g:vimtex_compiler_latexmk = {
-            \ 'backend': 'process'
+            \ 'backend': 'jobs'
             \ }
 if (s:is_windows)
     let g:vimtex_view_general_viewer = 'SumatraPDF'
@@ -221,11 +221,10 @@ if (s:is_windows)
 elseif (s:is_macos)
     let g:vimtex_view_method = 'skim'
 endif
-let g:vimtex_quickfix_latexlog = {
-            \   'general': 0
-            \ }
 let g:vimtex_quickfix_open_on_warning = 0
 let g:vimtex_quickfix_ignore_filters = [
+            \'Command terminated with space',
+            \'possible unwanted space at ',
             \'You should put a space in front of parenthesis',
             \]
 "au FileType tex,plaintex set conceallevel=1 |
