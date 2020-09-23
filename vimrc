@@ -63,6 +63,7 @@ Plug 'idris-hackers/idris-vim', { 'for':'idris' }
 Plug 'PProvost/vim-ps1', { 'for':'ps1' }
 Plug 'rhysd/vim-llvm', { 'for':['llvm', 'tablegen'] }
 Plug 'lervag/vimtex', { 'for':['tex','plaintex'] }
+Plug 'DrTom/fsharp-vim'
 call plug#end()
 
 filetype on
@@ -202,6 +203,10 @@ let g:ale_open_list = 0
 let g:tex_flavor = 'latex'
 let g:tex_fast = 'bmMv'
 let g:matchup_override_vimtex = 1
+let g:matchup_matchparen_deferred = 1
+let g:vimtex_compiler_latexmk = {
+            \ 'backend': 'process'
+            \ }
 if (s:is_windows)
     let g:vimtex_view_general_viewer = 'SumatraPDF'
     let g:vimtex_view_general_options
