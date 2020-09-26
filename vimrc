@@ -99,9 +99,12 @@ set incsearch
 set background=dark
 set guioptions-=T
 if s:has_gui || s:is_macos
-   "colo solarized
-   colo monokai
-   set guifont=mononoki:h10
+    "colo solarized
+    colo monokai
+    set guifont=mononoki:h10
+    if s:is_windows
+        set guifontwide=simhei:h10
+    endif
 else
    colo industry
 endif
