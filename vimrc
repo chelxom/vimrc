@@ -208,6 +208,7 @@ let g:tex_fast = 'bmMv'
 let g:matchup_override_vimtex = 1
 let g:matchup_matchparen_deferred = 1
 let g:vimtex_indent_on_ampersands = 0
+let g:vimtex_indent_ignored_envs = ['document', 'Verbatim']
 let g:vimtex_compiler_latexmk = {
             \ 'backend': 'jobs'
             \ }
