@@ -7,4 +7,7 @@
 # netrw history
 .netrwhist
 
+# spell binary
+*.spl
+
 *.zip
