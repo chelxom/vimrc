@@ -63,7 +63,6 @@ Plug 'idris-hackers/idris-vim', { 'for':'idris' }
 Plug 'PProvost/vim-ps1', { 'for':'ps1' }
 Plug 'rhysd/vim-llvm', { 'for':['llvm', 'tablegen'] }
 Plug 'lervag/vimtex'
-Plug 'DrTom/fsharp-vim'
 call plug#end()
 
 filetype on
