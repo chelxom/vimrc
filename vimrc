@@ -64,6 +64,9 @@ Plug 'edwinb/idris2-vim', { 'for':'idris2' }
 Plug 'PProvost/vim-ps1', { 'for':'ps1' }
 Plug 'rhysd/vim-llvm', { 'for':['llvm', 'tablegen'] }
 Plug 'lervag/vimtex'
+
+Plug 'iamcco/markdown-preview.nvim', { 'do': { -> mkdp#util#install() }, 'for': ['markdown', 'vim-plug']}
+
 call plug#end()
 
 filetype on
