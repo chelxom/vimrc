@@ -51,7 +51,7 @@ Plug 'vim-scripts/LargeFile'
 Plug 'skywind3000/asyncrun.vim'
 Plug 'w0rp/ale'
 Plug 'jpalardy/vim-slime'
-Plug 'haya14busa/incsearch.vim'
+Plug 'haya14busa/is.vim'
 Plug 'andymass/vim-matchup'
 
 " Always register the plugin, but when turn it on when there's python binding.
