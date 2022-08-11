@@ -142,8 +142,10 @@ call s:MapNI("<c-z>", ":u")
 call s:MapNI("<c-e>", ":Lexplore", "") " Set postkeys to none.
 
 " Copy/paste
-vnoremap <Leader>c "+y
-inoremap <Leader>v <ESC>"+pa
+if has('clipboard') && s:has_gui
+    vnoremap <c-c> "+y
+    inoremap <c-v> <ESC>"+pa
+endif
 
 inoremap jj <ESC>
 
