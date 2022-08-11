@@ -84,7 +84,6 @@ lan C
 source $VIMRUNTIME/delmenu.vim
 source $VIMRUNTIME/menu.vim
 
-let maplocalleader = " "
 set nobackup
 set noswapfile
 set nomodeline
@@ -143,8 +142,8 @@ call s:MapNI("<c-z>", ":u")
 call s:MapNI("<c-e>", ":Lexplore", "") " Set postkeys to none.
 
 " Copy/paste
-vnoremap <c-c> "+y
-inoremap <C-V> <ESC>"+pa
+vnoremap <Leader>c "+y
+inoremap <Leader>v <ESC>"+pa
 
 inoremap jj <ESC>
 
