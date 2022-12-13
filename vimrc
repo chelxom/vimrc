@@ -66,6 +66,8 @@ Plug 'rhysd/vim-llvm', { 'for':['llvm', 'tablegen'] }
 Plug 'lervag/vimtex'
 
 Plug 'iamcco/markdown-preview.nvim', { 'do': { -> mkdp#util#install() }, 'for': ['markdown', 'vim-plug']}
+Plug 'godlygeek/tabular'
+Plug 'preservim/vim-markdown'
 
 call plug#end()
 
@@ -260,3 +262,6 @@ let g:vimtex_quickfix_ignore_filters = [
 let g:UltiSnipsExpandTrigger="<tab>"
 let g:UltiSnipsJumpForwardTrigger="<tab>"
 let g:UltiSnipsJumpBackwardTrigger="<c-tab>"
+
+let g:vim_markdown_folding_disabled = 1
+let g:vim_markdown_math = 1
